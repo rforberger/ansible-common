@@ -1,0 +1,43 @@
+---
+
+- name: Install packages
+  ansible.builtin.apt:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - fish
+      - htop
+      - git
+      - sudo
+      - neofetch
+      - figlet
+    
+- name: Set fqdn
+  lineinfile:
+    dest: /etc/hosts
+    regexp: "^{{ ansible_default_ipv4.address }}"
+    line: "{{ ansible_default_ipv4.address }} {{ ansible_hostname }}.{{ domain_name }} {{ ansible_hostname }}"
+    state: present
+    backup: yes
+  notify:
+    - restart systemd-logind
+
+- name: Set hostname
+  ansible.builtin.hostname:
+    name: "{{ ansible_host }}"
+
+- name: Set motd
+  ansible.builtin.template:
+    src: "{{ item.source }}"
+    dest: "/etc/update-motd.d/{{ item.dest }}"
+    mode: 0755
+  loop:
+    - { source: "01-neofetch.j2", dest: "01-neofetch" }
+    - { source: "02-figlet-hostname.j2", dest: "02-figlet-hostname" }
+
+
+
+
+
+

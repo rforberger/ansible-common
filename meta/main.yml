@@ -1,0 +1,25 @@
+---
+dependencies: [apt, volumes, sudo, rootpw, sshd, debian-unattended-upgrades, googlecloud, users, prometheus-node-exporter]
+
+galaxy_info:
+  role_name: common
+  author: ronnyforberger
+  description: A role to deploy common
+  company: ""
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.4
+  platforms:
+    - name: EL
+      versions:
+        - 7
+        - 8
+        - 9
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+    - name: Archlinux
+      versions:
+        - all
