@@ -22,6 +22,7 @@
     backup: yes
   notify:
     - restart systemd-logind
+  when: domain_name is defined
 
 - name: Set hostname
   ansible.builtin.hostname:

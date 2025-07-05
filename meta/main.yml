@@ -1,5 +1,5 @@
 ---
-dependencies: [apt, volumes, sudo, rootpw, sshd, debian-unattended-upgrades, googlecloud, users, prometheus-node-exporter]
+dependencies: [apt, sudo, sshd, debian-unattended-upgrades, rootpw, googlecloud, users]
 
 galaxy_info:
   role_name: common
